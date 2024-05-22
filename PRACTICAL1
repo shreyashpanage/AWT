@@ -1,61 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./index.css">
-    <title>First Practical</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editable Table</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+    
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    
+    button:hover {
+        background-color: #45a049;
+    }
+    
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+    
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    td input[type="text"] {
+        width: 100%;
+        border: none;
+        padding: 5px;
+        box-sizing: border-box;
+    }
+</style>
 </head>
 <body>
-    <style>
-        table, th, td{
-    border: 1px dashed black;
-    border-spacing: 5px;
-}
-
-td{
-    text-align: center;
-    height: 30px;
-    font-size: medium;
-}
-
-.theadings{
-    width: 700px;
-}
-    </style>
-    <table id="maintable">
-        <tr>
-            <th class="theadings"><h3>Semester</h3></th>
-            <th class="theadings"><h3>SGPA</h3></th>
-        </tr>
-    </table>
-
-    <br><br>
-    <h3>Input your Semester and SGPA: </h3><br>
-    <label for="sem">Semester: </label>
-    <input type="text" name="sem" id="sem">
-    <label for="sgpa">SGPA: </label>
-    <input type="number" name="sgpa" id="sgpa">
+    <div class="container">
+        <h2 style="text-align: center;">Practical No: 1</h2>
+        <button onclick="createTable()">Create Table</button>
+        <div id="table-container"></div>
+    </div>
     
-    <br><br>
-    <button onclick="addData()">Add Data</button>
-
     <script>
-        function addData(){
-            var semester = document.getElementById("sem").value;
-            var sgpa = document.getElementById("sgpa").value;
-            let table = document.getElementById("maintable");
-            let newRow = table.insertRow(table.rows.length);
-            newRow.insertCell(0).innerHTML = semester; 
-            newRow.insertCell(1).innerHTML = sgpa; 
-            clearInputs();
-        }
-
-        function clearInputs(){
-            document.getElementById("sem").value = ""; 
-            document.getElementById("sgpa").value = ""; 
+        function createTable() {
+            var rows = parseInt(prompt("Enter the number of rows:"));
+            var cols = parseInt(prompt("Enter the number of columns:"));
+            
+            var table = document.createElement("table");
+            table.setAttribute("id", "editable-table");
+            
+            for (var i = 0; i < rows; i++) {
+                var row = table.insertRow();
+                
+                for (var j = 0; j < cols; j++) {
+                    var cell = row.insertCell();
+                    var input = document.createElement("input");
+                    input.type = "text";
+                    input.placeholder = "Content";
+                    cell.appendChild(input);
+                }
+            }
+            
+            var tableContainer = document.getElementById("table-container");
+            tableContainer.innerHTML = "";
+            tableContainer.appendChild(table);
         }
     </script>
-
 </body>
 </html>
