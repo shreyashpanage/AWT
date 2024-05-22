@@ -1,0 +1,104 @@
+Maintain the transactional history of any
+user is very important. Explore the various session tracking mechanism. (Cookies, HTTP
+session)
+
+
+
+
+const express = require('express');
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  const htmlResponse = `
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Transaction History</title>
+      <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 20px;
+        }
+
+        form {
+          margin-bottom: 20px;
+        }
+
+        ul {
+          list-style: none;
+          padding: 0;
+        }
+
+        li {
+          margin-bottom: 5px;
+        }
+      </style>
+    </head>
+    <body>
+      <h1>Transaction History</h1>
+     
+      <form id="transactionForm">
+        <label for="description">Description:</label>
+        <input type="text" id="description" name="description" required>
+       
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" required>
+       
+        <button type="button" onclick="addTransaction()">Add Transaction</button>
+      </form>
+     
+      <h2>Transactions:</h2>
+      <ul id="transactionList"></ul>
+     
+      <p id="sessionId">Session ID: </p>
+
+      <script>
+        function addTransaction() {
+          var description = document.getElementById('description').value;
+          var amount = document.getElementById('amount').value;
+
+          if (description && amount) {
+            var transactionList = document.getElementById('transactionList');
+            var listItem = document.createElement('li');
+            listItem.textContent = description + ' - ' + amount;
+            transactionList.appendChild(listItem);
+
+            document.getElementById('description').value = '';
+            document.getElementById('amount').value = '';
+          }
+        }
+
+        document.getElementById('sessionId').textContent += getSessionId();
+
+        function getSessionId() {
+          var sessionId = getCookie('sessionId');
+          if (!sessionId) {
+            sessionId = generateSessionId();
+            document.cookie = 'sessionId=' + sessionId;
+          }
+          return sessionId;
+        }
+
+        function generateSessionId() {
+          return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+        }
+
+        function getCookie(name) {
+          var match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+          if (match) return match[2];
+        }
+      </script>
+    </body>
+    </html>
+  `;
+
+  res.send(htmlResponse);
+});
+
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
