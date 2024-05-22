@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <title>First Practical</title>
+</head>
+<body>
+    <style>
+        table, th, td{
+    border: 1px dashed black;
+    border-spacing: 5px;
+}
+
+td{
+    text-align: center;
+    height: 30px;
+    font-size: medium;
+}
+
+.theadings{
+    width: 700px;
+}
+    </style>
+    <table id="maintable">
+        <tr>
+            <th class="theadings"><h3>Semester</h3></th>
+            <th class="theadings"><h3>SGPA</h3></th>
+        </tr>
+    </table>
+
+    <br><br>
+    <h3>Input your Semester and SGPA: </h3><br>
+    <label for="sem">Semester: </label>
+    <input type="text" name="sem" id="sem">
+    <label for="sgpa">SGPA: </label>
+    <input type="number" name="sgpa" id="sgpa">
+    
+    <br><br>
+    <button onclick="addData()">Add Data</button>
+
+    <script>
+        function addData(){
+            var semester = document.getElementById("sem").value;
+            var sgpa = document.getElementById("sgpa").value;
+            let table = document.getElementById("maintable");
+            let newRow = table.insertRow(table.rows.length);
+            newRow.insertCell(0).innerHTML = semester; 
+            newRow.insertCell(1).innerHTML = sgpa; 
+            clearInputs();
+        }
+
+        function clearInputs(){
+            document.getElementById("sem").value = ""; 
+            document.getElementById("sgpa").value = ""; 
+        }
+    </script>
+
+</body>
+</html>
