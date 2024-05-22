@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Travel Destinations</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Inline CSS styles */
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+
+  h1 {
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+
+  p {
+    color: #666;
+    line-height: 1.6;
+  }
+
+
+  .destination {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
+</style>
+</head>
+<body>
+
+
+<div class="container">
+  <h1>Travel Destinations</h1>
+
+
+  <div class="destination">
+    <h2>Paris, France</h2>
+    <p>Paris, the capital city of France, is renowned for its art, fashion, and culture. Visit iconic landmarks such as the Eiffel Tower, Louvre Museum, and Notre-Dame Cathedral.</p>
+  </div>
+
+
+  <div class="destination">
+    <h2>Tokyo, Japan</h2>
+    <p>Experience the bustling metropolis of Tokyo with its vibrant street life, delicious cuisine, and unique blend of traditional and modern attractions like Senso-ji Temple and Tokyo Disneyland.</p>
+  </div>
+
+
+  <div class="destination">
+    <h2>Santorini, Greece</h2>
+    <p>Santorini is famous for its stunning sunsets, whitewashed buildings with blue domes, and crystal-clear waters. Explore picturesque villages, ancient ruins, and beautiful beaches.</p>
+  </div>
+</div>
+
+
+</body>
+</html>
+
+
+Style.css
+/* External CSS styles in styles.css */
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  p {
+    color: #666;
+    line-height: 1.6;
+  }
+  
+  .destination {
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+  }
