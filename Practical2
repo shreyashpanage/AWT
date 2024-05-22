@@ -1,0 +1,111 @@
+Create a webpage using HTML form object.
+
+
+HTML Code:
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="index.css">
+    <title>Form Using HTML5</title>
+
+</head>
+
+<body>
+    <div class="headContainer">
+        <h1>Enter the student information</h1>
+        <form>
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="studyyear">Year of study</label>
+                <select class="form-control" id="studyyear" required>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" class="form-control" id="dob" placeholder="Date of Birth" required>
+            </div>
+            <div class="form-group">
+                <label for="cgpa">CGPA</label>
+                <input type="number" step="0.1" class="form-control" id="cgpa" placeholder="Your CGPA" required>
+            </div>
+            <br>
+            <button class="btn btn-primary" onclick="insert()">Enter</button>
+        </form>
+
+
+
+
+        <table class="table" id="maintable">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Year of Study</th>
+                <th scope="col">Date of Birth</th>
+                <th scope="col">CGPA</th>
+              </tr>
+            </thead>
+            <tbody>
+        
+            </tbody>
+          </table>
+    </div>
+
+    
+    <script>
+        function insert(){
+            var name = document.getElementById("name").value;
+            var email = document.getElementById("email").value;
+            var studyyear = document.getElementById("studyyear").value;
+            var dob = document.getElementById("dob").value;
+            var cgpa = document.getElementById("cgpa").value;
+            var table = document.getElementById("maintable");
+            var newRow = table.insertRow(table.rows.length);
+            newRow.insertCell(0).innerHTML = table.rows.length - 1; 
+            newRow.insertCell(1).innerHTML = name; 
+            newRow.insertCell(2).innerHTML = email; 
+            newRow.insertCell(3).innerHTML = studyyear; 
+            newRow.insertCell(4).innerHTML = dob; 
+            newRow.insertCell(5).innerHTML = cgpa; 
+            clearInputs();
+        }
+
+        function clearInputs(){
+            document.getElementById("name").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("studyyear").value = "";
+            document.getElementById("dob").value = "";
+            document.getElementById("cgpa").value = "";
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+
+
+
+
+
+CSS Code:
+.headContainer{
+    margin: 10%;
+}
+
+</html>
