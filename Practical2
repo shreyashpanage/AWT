@@ -1,111 +1,181 @@
-Create a webpage using HTML form object.
-
-
-HTML Code:
-
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link rel="stylesheet" href="index.css">
-    <title>Form Using HTML5</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+  }
 
+
+  .container {
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+
+
+  h2 {
+    text-align: center;
+  }
+
+
+  label {
+    font-weight: bold;
+  }
+
+
+  input[type="text"],
+  input[type="email"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+
+  input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+
+  input[type="submit"]:hover {
+    background-color: #45a049;
+  }
+
+
+  .menu {
+    overflow: hidden;
+    background-color: #333;
+  }
+
+
+  .menu a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 20px;
+    text-decoration: none;
+  }
+
+
+  .menu a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+</style>
 </head>
-
 <body>
-    <div class="headContainer">
-        <h1>Enter the student information</h1>
-        <form>
-            <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
-            </div>
-            <div class="form-group">
-                <label for="studyyear">Year of study</label>
-                <select class="form-control" id="studyyear" required>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="dob">Date of Birth</label>
-                <input type="date" class="form-control" id="dob" placeholder="Date of Birth" required>
-            </div>
-            <div class="form-group">
-                <label for="cgpa">CGPA</label>
-                <input type="number" step="0.1" class="form-control" id="cgpa" placeholder="Your CGPA" required>
-            </div>
-            <br>
-            <button class="btn btn-primary" onclick="insert()">Enter</button>
-        </form>
 
 
+<div class="menu">
+  <a href="#home">Home</a>
+  <a href="#about">About</a>
+  <a href="#contact">Contact</a>
+</div>
 
 
-        <table class="table" id="maintable">
-            <thead>
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Name</th>
-                <th scope="col">Email</th>
-                <th scope="col">Year of Study</th>
-                <th scope="col">Date of Birth</th>
-                <th scope="col">CGPA</th>
-              </tr>
-            </thead>
-            <tbody>
-        
-            </tbody>
-          </table>
-    </div>
+<div class="container">
+  <h2>Contact Form</h2>
 
-    
-    <script>
-        function insert(){
-            var name = document.getElementById("name").value;
-            var email = document.getElementById("email").value;
-            var studyyear = document.getElementById("studyyear").value;
-            var dob = document.getElementById("dob").value;
-            var cgpa = document.getElementById("cgpa").value;
-            var table = document.getElementById("maintable");
-            var newRow = table.insertRow(table.rows.length);
-            newRow.insertCell(0).innerHTML = table.rows.length - 1; 
-            newRow.insertCell(1).innerHTML = name; 
-            newRow.insertCell(2).innerHTML = email; 
-            newRow.insertCell(3).innerHTML = studyyear; 
-            newRow.insertCell(4).innerHTML = dob; 
-            newRow.insertCell(5).innerHTML = cgpa; 
-            clearInputs();
-        }
 
-        function clearInputs(){
-            document.getElementById("name").value = "";
-            document.getElementById("email").value = "";
-            document.getElementById("studyyear").value = "";
-            document.getElementById("dob").value = "";
-            document.getElementById("cgpa").value = "";
-        }
-    </script>
+  <form id="contactForm" action="#" method="post">
+    <label for="fname">First Name:</label><br>
+    <input type="text" id="fname" name="fname" required><br>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <label for="lname">Last Name:</label><br>
+    <input type="text" id="lname" name="lname" required><br>
+
+
+    <label for="email">Email:</label><br>
+    <input type="email" id="email" name="email" required><br>
+
+
+    <label for="gender">Gender:</label><br>
+    <input type="radio" id="male" name="gender" value="male" required>
+    <label for="male">Male</label>
+    <input type="radio" id="female" name="gender" value="female" required>
+    <label for="female">Female</label><br>
+
+
+    <label for="education">Education:</label><br>
+    <select id="education" name="education" required>
+      <option value="">Select</option>
+      <option value="high_school">High School</option>
+      <option value="bachelors">Bachelor's Degree</option>
+      <option value="masters">Master's Degree</option>
+      <option value="phd">Ph.D. or higher</option>
+    </select><br>
+
+
+    <label for="message">Message:</label><br>
+    <textarea id="message" name="message" rows="4" cols="50" required></textarea><br>
+
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+
+<script>
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    // Prevent default form submission
+    event.preventDefault();
+
+
+    // Perform form validation
+    var fname = document.getElementById('fname').value;
+    var lname = document.getElementById('lname').value;
+    var email = document.getElementById('email').value;
+    var gender = document.querySelector('input[name="gender"]:checked');
+    var education = document.getElementById('education').value;
+    var message = document.getElementById('message').value;
+
+
+    if (fname.trim() === '' || lname.trim() === '' || email.trim() === '' || !gender || education.trim() === '' || message.trim() === '') {
+      alert('Please fill out all fields.');
+      return false;
+    }
+
+
+    // If all fields are filled, submit the form
+    // In a real scenario, this is where you would send the form data to a server
+    // For demonstration, we'll just log the form data to the console
+    console.log('First Name:', fname);
+    console.log('Last Name:', lname);
+    console.log('Email:', email);
+    console.log('Gender:', gender.value);
+    console.log('Education:', education);
+    console.log('Message:', message);
+
+
+    // You can add additional logic here, such as displaying a success message or redirecting the user
+  });
+</script>
+
+
 </body>
-
-
-
-
-
-CSS Code:
-.headContainer{
-    margin: 10%;
-}
-
 </html>
+
+
