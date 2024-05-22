@@ -1,149 +1,94 @@
-Develop and Demonstrate the use of inline
-and external styles sheet using CSS.
+ <?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/css" href="pr5.css"?>
+<students>
+    <student>
+        <USN>001</USN>
+        <Name>Tanmay Singwar</Name>
+        <CollegeName>RTMNU College</CollegeName>
+        <Branch>Computer Science</Branch>
+        <YearOfJoining>2022</YearOfJoining>
+        <EmailID>tanmay@example.com</EmailID>
+    </student>
+    <student>
+        <USN>002</USN>
+        <Name>Gunjan</Name>
+        <CollegeName>RTMNU College</CollegeName>
+        <Branch>AIDS Engineering</Branch>
+        <YearOfJoining>2021</YearOfJoining>
+        <EmailID>gunjan@example.com</EmailID>
+    </student>
+    <student>
+        <USN>003</USN>
+        <Name>Abhishek</Name>
+        <CollegeName>RTMNU College</CollegeName>
+        <Branch>ETC Engineering</Branch>
+        <YearOfJoining>2023</YearOfJoining>
+        <EmailID>abhishek@example.com</EmailID>
+    </student>
+</students>
 
-HTML:
-<!DOCTYPE html>
+
+
+/* CSS Style Sheet */
+student {
+    display: block;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+USN, Name, CollegeName, Branch, YearOfJoining, EmailID {
+    display: block;
+    margin-bottom: 5px;
+}
+Program 2. <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Information</title>
-    <link rel="stylesheet" href="styles.css">
+    
+    <title>XML Display</title>
+    <style>
+    
+    </style>
 </head>
 <body>
+    <div id="xmlContent"></div>
 
-    <h2>Student Information Table</h2>
+    <script>
+        fetch('students.xml')
+            .then(response => response.text())
+            .then(data => {
+                let parser = new DOMParser();
+                let xml = parser.parseFromString(data, 'text/xml');
+                let students = xml.getElementsByTagName('Student');
 
-    <table>
-        <tr>
-            <th>Student No</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>Year</th>
-            <th>Birthday</th>
-            <th>CGPA</th>
-        </tr>
-        <!-- Data will be dynamically inserted here -->
-    </table>
+                let xmlContentDiv = document.getElementById('xmlContent');
 
-    <script src="script.js"></script>
+                for (let student of students) {
+                    let usn = student.getElementsByTagName('USN')[0].textContent;
+                    let name = student.getElementsByTagName('Name')[0].textContent;
+                    let college = student.getElementsByTagName('CollegeName')[0].textContent;
+                    let branch = student.getElementsByTagName('Branch')[0].textContent;
+                    let year = student.getElementsByTagName('YearOfJoining')[0].textContent;
+                    let email = student.getElementsByTagName('EmailID')[0].textContent;
+
+                    let studentDiv = document.createElement('div');
+                    studentDiv.classList.add('student');
+
+                    studentDiv.innerHTML = `
+                        <h2>${name}</h2>
+                        <p><strong>USN:</strong> ${usn}</p>
+                        <p><strong>College:</strong> ${college}</p>
+                        <p><strong>Branch:</strong> ${branch}</p>
+                        <p><strong>Year of Joining:</strong> ${year}</p>
+                        <p><strong>Email:</strong> ${email}</p>
+                    `;
+
+                    xmlContentDiv.appendChild(studentDiv);
+                }
+            })
+            .catch(error => console.error(error));
+    </script>
 </body>
 </html>
-
-
-
-
-Javascript:
-
-document.addEventListener('DOMContentLoaded', function () {
-    // Load XML file
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            displayStudentInfo(this);
-        }
-    };
-    xhttp.open("GET", "students.xml", true);
-    xhttp.send();
-});
-
-function displayStudentInfo(xml) {
-    var xmlDoc = xml.responseXML;
-    var students = xmlDoc.getElementsByTagName("student");
-
-    // Display information of the second student only
-    var student = students[1];
-
-    var table = document.querySelector("table");
-
-    var row = table.insertRow(1); // Start from the second row (index 1)
-    
-    var studentNo = row.insertCell(0);
-    studentNo.innerHTML = student.getElementsByTagName("studentNo")[0].childNodes[0].nodeValue;
-
-    var name = row.insertCell(1);
-    name.innerHTML = student.getElementsByTagName("name")[0].childNodes[0].nodeValue;
-
-    var gender = row.insertCell(2);
-    gender.innerHTML = student.getElementsByTagName("gender")[0].childNodes[0].nodeValue;
-
-    var year = row.insertCell(3);
-    year.innerHTML = student.getElementsByTagName("year")[0].childNodes[0].nodeValue;
-
-    var birthday = row.insertCell(4);
-    birthday.innerHTML = student.getElementsByTagName("birthday")[0].childNodes[0].nodeValue;
-
-    var cgpa = row.insertCell(5);
-    cgpa.innerHTML = student.getElementsByTagName("cgpa")[0].childNodes[0].nodeValue;
-}
-
-
-
-
-
-
-CSS:
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 20px;
-}
-
-h2 {
-    color: #333;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-}
-
-th, td {
-    padding: 12px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-th {
-    background-color: #4CAF50;
-    color: white;
-}
-
-tr:hover {
-    background-color: #f5f5f5;
-}
-
-
-
-
-
-XML:
-
-<?xml version="1.0" encoding="UTF-8"?>
-<students>
-    <student>
-        <studentNo>101</studentNo>
-        <name>John Doe</name>
-        <gender>Male</gender>
-        <year>3</year>
-        <birthday>1999-05-15</birthday>
-        <cgpa>3.8</cgpa>
-    </student>
-    <student>
-        <studentNo>102</studentNo>
-        <name>Jane Smith</name>
-        <gender>Female</gender>
-        <year>2</year>
-        <birthday>2000-02-20</birthday>
-        <cgpa>3.5</cgpa>
-    </student>
-    <student>
-        <studentNo>103</studentNo>
-        <name>Bob Johnson</name>
-        <gender>Male</gender>
-        <year>4</year>
-        <birthday>1998-11-10</birthday>
-        <cgpa>3.9</cgpa>
-    </student>
-</students>
